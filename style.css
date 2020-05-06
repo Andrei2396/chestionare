@@ -1,0 +1,85 @@
+body{
+    background-color: #76b852;
+}
+
+/*
+ * Top section
+ */
+header{
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 50px 0;
+    margin-bottom:50px;
+}
+/*
+ * Middle section
+ */
+
+
+ /* INDEX PAGE */
+#inputCategory{
+    text-align: center!important;
+}
+
+
+
+ .wrapper{
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+
+ }
+ #one{
+     width:350px;
+     box-shadow: black;
+     padding:25px;
+     margin: 0 auto 100px;
+     box-shadow: black 3px;
+ }
+main{
+    margin: 0 auto; 
+    width:75%; 
+}
+.card{
+    width:100%;
+}
+form{
+    text-align:center;
+    padding:50px 0;
+}
+.form-group>.login{
+    color:#FFFFFF;
+    background-color: #4CAF50;
+}
+.form-group>.login:hover{
+    background-color: #43A047;
+}
+.is_question{
+    margin-bottom:50px;
+}
+ul{
+    list-style-type: none;
+    margin:25px 0;
+}
+li{
+    padding:25px;
+    font-size:1.5rem;
+}
+li:hover{
+}
+.btn-light{
+    width:50%;
+}
+/*
+ * Bottom section
+ */
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 50px 0;
+    margin-top:100px;
+}
