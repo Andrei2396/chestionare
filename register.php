@@ -42,10 +42,10 @@ if(!empty($_POST['submit'])){
     $sql="SELECT * FROM `user` WHERE `email`='{$email}'";
     $result=$db->query($sql);
     if($db->error){
-        exit("SQL error.<a href='./register.php'>RETURN</a>");
+        exit("SQL error.<a href='./index.php'>RETURN</a>");
     }
     if($result->num_rows!==0){ //check if theres any match for e-mail
-        exit("Please use another e-mail adress.<a href='./register.php'>RETURN</a>");
+        exit("Please use another e-mail adress.<a href='./index.php'>RETURN</a>");
     }
 
     //destroy new object and insert data into database
@@ -55,59 +55,11 @@ if(!empty($_POST['submit'])){
     $sql="INSERT INTO `user` SET `user_name`='{$user_name}', `email`='{$email}', `password`='{$password}'";
     $result=$db->query($sql);
     if($result===true){
-        header("Location: ./login.php"); 
+        header("Location: ./index.php"); 
     } else {
         echo "registration failed";
     }
-    $db->close();
-    
+    $db->close(); 
 }
-
-
 ?>
  
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="wrapper" id="one">
-        <div class="card">
-            <h2>Sign Up</h2>
-            <p>Please fill this form to create an account.</p>
-            <form action="" method="POST">
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" name="user_name" class="form-control" placeholder="username">
-
-                </div>
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" name="email" class="form-control" placeholder="email">
-                </div>  
-
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="password">
-                </div>
-
-                <div class="form-group">
-                    <label>Confirm Password</label>
-                    <input type="password" name="confirm_password" class="form-control" placeholder="confirm password">
-
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary" name="submit">
-                    <input type="reset" class="btn btn-default" value="Reset">
-                </div>
-</br></br></br>
-                <p>Already have an account? <a href="login.php">Login here</a>.</p>
-            </form>
-        </div> 
-    </div>    
-</body>
-</html>

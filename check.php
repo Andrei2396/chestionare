@@ -1,9 +1,7 @@
 <?php require_once("./connect.php")?>
-<?php 
-session_start(); 
-?>
-<?php
+<?php session_start(); ?>
 
+<?php
 if (!isset($_SESSION['score'])){
     $_SESSION['score']=0;
 }
@@ -11,6 +9,7 @@ if (!isset($_SESSION['score'])){
 /*
  *  Get total questions
  */
+
 $query="SELECT * FROM `questions` WHERE id_categorie='{$_SESSION['categories']}'";
 $result = $db -> query($query) or die ($db -> error.__LINE__);
 $total=$result->num_rows;
