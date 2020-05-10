@@ -1,4 +1,4 @@
-<?php require_once("./connect.php"); ?>
+<?php require_once("F:/Programare/XAMPP/htdocs/chestionare/connect.php"); ?>
 <?php session_start(); ?>
 <?php
 
@@ -7,15 +7,10 @@ if(!empty($_POST['submit'])){
         exit("Please fill al the forms.<a href='./login.php'>RETURN</a>");
     }
 
-
     $user_name=addslashes($_POST['user_name']);
     $password=addslashes($_POST['password']);
-    $_SESSION['username']=$user_name;
 
-    /**
-     * Fetch credentials from database
-     */
-
+    require_once("./connect.php");
 
     $sql="SELECT * FROM `user` WHERE `user_name`='{$user_name}'";
     $result=$db->query($sql);
@@ -28,7 +23,7 @@ if(!empty($_POST['submit'])){
 
     //compare the password
 
-    $password =$password;
+    $password = md5($password);
     $array = $result->fetch_array(); //de unde stie exact ca trebuie sa ia parola?
     $result->free();
     $db->close();
@@ -37,44 +32,9 @@ if(!empty($_POST['submit'])){
         $security=md5($array['user_id'].$array['password']."one_plus_two_is_three");
         setcookie("security", $security, 0, "/");
         echo "<script>window.location.href='./index.php'</script>";
- 
+        $_SESSION['username']=$user_name;
     }else {
         exit("<br>Wrong password!");
     }  
 }
 ?>
- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-
-</head>
-<body>
-    <div class="wrapper">
-        <div class="card border-top0" id="one">
-                <form action="index.php" method="POST">
-                    <div class="form-group">
-                        <input type="text" name="user_name" class="form-control" placeholder="username">
-                        <span class="help-block"></span>
-                    </div>    
-                    <div class="form-group">
-                        <input type="text" name="password" class="form-control" placeholder="password">
-                        <span class="help-block"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" name="submit" class="form-control login" value="Login">
-                    </div>
-                    </br>
-                    <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-                </form>
-        </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>   
-</body>
-</html>

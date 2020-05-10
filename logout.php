@@ -5,7 +5,7 @@ session_start();
 // Unset all of the session variables
 $_SESSION = array();
 
-            // Delete cookie
+// Delete cookie
 if(isset($_COOKIE['id'])&&isset($_COOKIE['security'])){
     setcookie("id","",time()-1,"/");
     setcookie("security","",time()-1,"/");
@@ -18,6 +18,6 @@ setcookie(session_name(),"",time()-1,"/");
 session_destroy();
 
 // Redirect to login page
-header("location: login.php");
+header("location: index.php");
 exit;
 ?>

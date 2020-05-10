@@ -20,9 +20,11 @@
         </p>
     </header>
     <main>
-        <h6>Your final score is: 
-        <?php echo $_SESSION['score'];?>
-        </h6>
+        <div class="final-score">
+            <p>Your final score is: </p>
+            <?php echo $_SESSION['score'];?>
+        </div>
+        
     </main>
     <footer>
             <h4>Copyright &copy; 2020</h4>

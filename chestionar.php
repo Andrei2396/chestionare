@@ -9,9 +9,6 @@ if(!isset($_SESSION['categories'])){
     $_SESSION['categories']=$_POST['categories'];
 }
 
-echo $_SESSION['categories'];
-
-
 
 /*
  *  Get total questions
@@ -27,6 +24,7 @@ $total=$result->num_rows;
 $query="SELECT * FROM `questions` WHERE  `id_categorie`='{$_SESSION['categories']}'";
 $result_q1 = $db -> query($query) or die ($db -> error.__LINE__);
 $question1 = $result_q1 -> fetch_assoc() ;
+
 if(!isset($_SESSION['q_id'])){
 $_SESSION['q_id']=$question1['q_id'];
 }
@@ -78,8 +76,8 @@ $result_a = $db -> query($query) or die ($db -> error.__LINE__);
                         while ($answer = $result_a-> fetch_assoc()){
                 ?>  
                     
-                    <li style="text-align:left">
-                        <input type="radio" name="choice" value="<?php echo $answer['a_id'];?>"><?php echo $answer['answer'];?>       
+                    <li class="choice" >
+                        <span  onclick="check()"><input class="choice1" type="radio" name="choice" value="<?php echo $answer['a_id'];?>"><?php echo $answer['answer'];?></span>       
                     </li>
                     
                 <?php        
@@ -97,7 +95,8 @@ $result_a = $db -> query($query) or die ($db -> error.__LINE__);
             <h4>Copyright &copy; 2020</h4>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="index.js"></script>
 </body>
 </html>
